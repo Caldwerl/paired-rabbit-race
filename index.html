@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Quadruped Animal Racer</title>
+  </head>
+
+  <body>
+
+    <header>
+      <h1>Quadruped Animal Racer</h1>
+      <p>Welcome to the first edition of Quadruped Animal Racer.</p>
+      <p>Input your quadrupeds name and statistics, click the 'Submit' button, and then sit back and brace yourself for the thrilling action as they race towards victory.</p>
+    </header>
+
+    <article>
+
+      <h3>Race Settings</h3>
+      <form name="raceSettings">
+        <fieldset name="quad1">
+          <legend>Quadruped 1</legend>
+          Name: <input type="text" name="quad1Name"><br>
+          Speed: <input type="number" name"quad1Speed" min="1"><br>
+          Focus: <input type="number" name="quad1Focus" max="10" min="1">
+        </fieldset>
+
+        <fieldset name="quad2">
+          <legend>Quadruped 2</legend>
+          Name: <input type="text" name="quad2Name"><br>
+          Speed: <input type="number" name"quad2Speed" min="1"><br>
+          Focus: <input type="number" name="quad2Focus" max="10" min="1">
+        </fieldset>
+
+        Race Distance: <input type="number" name="distance" min="10">
+
+        <button type="button" name="submit">Submit</button>
+      </form>
+
+    </article>
+
+    <footer>
+      <p>Created by Brian and Phil</p>
+    </footer>
+
+    <script src=""></script>
+
+  </body>
+
+</html>
