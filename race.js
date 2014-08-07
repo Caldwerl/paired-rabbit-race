@@ -33,7 +33,7 @@ var racerInput = function() {
   // =========User Input of rabbit and turtle's attributes ==========
   endDistance = document.getElementById('distance').value;
   inputRabbitName = document.getElementById('quadOneName').value;
-  inputRabbitSpeed = document.getElementById('quadOneName').value;
+  inputRabbitSpeed = document.getElementById('quadOneSpeed').value;
   inputRabbitFocus = document.getElementById('quadOneFocus').value;
   inputTurtleName = document.getElementById('quadTwoName').value;
   inputTurtleSpeed = document.getElementById('quadTwoSpeed').value;
