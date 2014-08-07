@@ -60,7 +60,7 @@ var updateDisplay = function (displayString) {
   mainDisplay.innerHTML = displayString;
 }
 
-var raceIteration = function () {
+var runRace = function () {
 
   distraction = Math.random() * 10;
 
@@ -81,21 +81,17 @@ var raceIteration = function () {
     messageString = ("<p>Turn " + turn + "<br><br>"
     + rabbit.movement(distraction)
     + "<br><br>"
-    + turtle.movement(distraction) + "<br> <button type=button onClick='raceIteration();'>Continue</button></p>");
+    + turtle.movement(distraction) + "<br> <button type=button onClick='runRace();'>Continue</button></p>");
   }
-
+  updateDisplay(messageString);
 }
 
+/*
 var runRace = function() {
 
-  // if rabbit and turtle are not at finishline, continue to next turn
-  while((finishLine == false) && (button == true)) {
+  if rabbit and turtle are not at finishline, continue to next turn
+  raceIteration();
 
-    raceIteration();
-
-    updateDisplay(messageString);
-
-  };
-
-
+  updateDisplay(messageString);
 }
+*/
