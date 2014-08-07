@@ -2,9 +2,10 @@ var rabbit, turtle;
 var inputRabbitSpeed, inputRabbitFocus, inputRabbitName, inputTurtleSpeed, inputTurtleFocus, inputTurtleName;
 var distraction, rabbitMove, turtleMove, rabbitAction, turtleAction;
 var endDistance;
-var confirmation;
 var turn = 0;
 var finishLine = false;
+var mainDisplay;
+var messageString;
 
 
 
@@ -43,40 +44,56 @@ var racerInput = function() {
 }
 
 var startGame = function() {
+
   racerInput();
 
-  confirmation = confirm("The distance to the goal line is 100 miles. Rabbit and Turtle, are set! Start simulation?");
+  mainDisplay = document.getElementById('mainDisplay');
 
-  //checks for user confirmation
-  if (confirmation == true) {
+  messageString = ("The distance to the goal line is " + endDistance + " miles. <br>" + rabbit.name + " and " + turtle.name + ", are set!<br> Start simulation?");
 
-    // if rabbit and turtle are not at finishline, continue to next turn
-    while((finishLine == false) && (confirmation == true)) {
-      distraction = Math.random() * 10;
+  mainDisplay.innerHTML = "<p>" + messageString + "</p> <br> <button type=button onClick='runRace();'>Start</button>";
 
-      turn += 1;
-
-      confirmation = confirm("Turn " + turn + "\n\n"
-        + rabbit.movement(distraction)
-        + "\n\n"
-        + turtle.movement(distraction) + "\n\nContinue?")
-
-      //finish game if rabbit crosses the finishLine
-      if (rabbit.currentMiles >= endDistance) {
-        alert(rabbit.name + " won!");
-        finishLine = true;
-      }
-
-      //finish game if turtle crosses the finishline.
-      else if (turtle.currentMiles >= endDistance) {
-        alert(turtle.name + " won!");
-        finishLine = true;
-      };
-    };
-  }
-  else {
-    alert("Goodbye!")
-  }
 }
 
+var updateDisplay = function (displayString) {
 
+  mainDisplay.innerHTML = displayString;
+}
+
+var runRace = function() {
+
+  // if rabbit and turtle are not at finishline, continue to next turn
+  while((finishLine == false)) {
+    distraction = Math.random() * 10;
+
+    turn += 1;
+
+    /*messageString = ("<p>Turn " + turn + "<br><br>"
+      + rabbit.movement(distraction)
+      + "<br><br>"
+      + turtle.movement(distraction) + "</p>");*/
+
+    //finish game if rabbit crosses the finishLine
+    if (rabbit.currentMiles >= endDistance) {
+      messageString = "<p>" + rabbit.name + " won!</p>";
+      finishLine = true;
+    }
+
+    //finish game if turtle crosses the finishline.
+    else if (turtle.currentMiles >= endDistance) {
+      messageString = "<p>" + turtle.name + " won!</p>";
+      finishLine = true;
+    }
+    else {
+      messageString = ("<p>Turn " + turn + "<br><br>"
+      + rabbit.movement(distraction)
+      + "<br><br>"
+      + turtle.movement(distraction) + "</p>");
+    }
+
+    setTimeout(updateDisplay(messageString), 3000);
+
+  };
+
+
+}
