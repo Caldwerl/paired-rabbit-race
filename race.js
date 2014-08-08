@@ -57,11 +57,13 @@ var startGame = function() {
 
   mainDisplay = document.getElementById('mainDisplay');
 
+  setTrackLayout();
+
   messageString = ("The distance to the goal line is " + endDistance
     + " miles. <br>" + rabbit.name + " and " + turtle.name
     + ", are set!<br> Start simulation?");
 
-  mainDisplay.innerHTML = "<p>" + messageString
+  mainDisplay.innerHTML = trackLayout + "<p>" + messageString
     + "</p> <br> <button type=button onClick='runRace();'>Start</button>";
 
 }
@@ -71,6 +73,19 @@ var updateDisplay = function (displayString) {
   mainDisplay.innerHTML = displayString;
 }
 
+var setTrackLayout = function () {
+
+  trackLayout ="<table style='width:600px; border: 1px solid black; border-collapse:collapse'>"
+    + "<tr><td style='width:550px; border: 1px solid black'>"
+    + "<img src='rabbit.jpg' style='margin-left:"
+    + Math.floor(rabbit.currentMiles / endDistance) + "%'"
+    + " height='150' width='150' /></td><td style='background-color:red'></td></tr>"
+    + "<tr><td style='width:550px; border: 1px solid black'>"
+    + "<img src='turtle.jpg' style='margin-left:"
+    + Math.floor(turtle.currentMiles / endDistance) + "%'"
+    + " height='150' width='150' /></td><td style='background-color:red'></td></tr><br>";
+}
+
 var runRace = function () {
 
   distraction = Math.random() * 10;
@@ -78,22 +93,38 @@ var runRace = function () {
   turn ++;
 
   //finish game if rabbit crosses the finishLine
-  if (rabbit.currentMiles >= endDistance) {
+  if (rabbit.currentMiles >= endDistance &&
+      turtle.currentMiles >= endDistance) {
+
+    trackLayout = "<img src='rabbit.jpg' /><img src='turtle.jpg' />";
+
+    messageString = "<p>" + rabbit.name + " and " + turtle.name
+      + " have tied!</p>";
+
+    finishLine = true;
+
+  }
+  //finish game if rabbit crosses the finishLine
+  else if (rabbit.currentMiles >= endDistance) {
+
     trackLayout = "<img src='rabbit.jpg' />";
+
     messageString = "<p>" + rabbit.name + " won!</p>";
+
     finishLine = true;
   }
   //finish game if turtle crosses the finishline.
   else if (turtle.currentMiles >= endDistance) {
+
     trackLayout = "<img src='turtle.jpg' />";
+
     messageString = "<p>" + turtle.name + " won!</p>";
+
     finishLine = true;
   }
   else {
-    trackLayout ="<table><tr><td><img src='rabbit.jpg' style='padding-left:"
-      + Math.floor(rabbit.currentMiles / endDistance) + "%' /></td></tr>"
-      + "<tr><td><img src='turtle.jpg' style='"
-      + Math.floor(turtle.currentMiles / endDistance) + "%' /></td></tr><br>";
+
+    setTrackLayout();
 
     messageString = ("<p>Turn " + turn + "<br><br>"
       + rabbit.movement(distraction)
