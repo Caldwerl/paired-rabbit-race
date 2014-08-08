@@ -32,10 +32,6 @@ function Animal(name, speed, focus) {
   }
 }
 
-// ==== Hard coded values, comment out if using user input ======
-//rabbit = new Animal("rabbit", 6, 4);
-//turtle = new Animal("turtle", 3, 9);
-
 var racerInput = function() {
   // =========User Input of rabbit and turtle's attributes ==========
   endDistance = document.getElementById('distance').value;
@@ -75,15 +71,15 @@ var updateDisplay = function (displayString) {
 
 var setTrackLayout = function () {
 
-  trackLayout ="<table style='width:600px; border: 1px solid black; border-collapse:collapse'>"
-    + "<tr><td style='width:550px; border: 1px solid black'>"
+  trackLayout ="<div style='width:600px'>"
+    + "<div style='border: 1px solid black'>"
     + "<img src='rabbit.jpg' style='margin-left:"
-    + Math.floor(rabbit.currentMiles / endDistance) + "%'"
-    + " height='150' width='150' /></td><td style='background-color:red'></td></tr>"
-    + "<tr><td style='width:550px; border: 1px solid black'>"
+    + Math.floor((rabbit.currentMiles / endDistance) * 100) + "%'"
+    + " height='150' width='150' /></div>"
+    + "<div style='border: 1px solid black; border-top: none'>"
     + "<img src='turtle.jpg' style='margin-left:"
-    + Math.floor(turtle.currentMiles / endDistance) + "%'"
-    + " height='150' width='150' /></td><td style='background-color:red'></td></tr><br>";
+    + Math.floor((turtle.currentMiles / endDistance) * 100) + "%'"
+    + " height='150' width='150' /></div></div><br>";
 }
 
 var runRace = function () {
@@ -135,13 +131,3 @@ var runRace = function () {
 
   updateDisplay(trackLayout + messageString);
 }
-
-/*
-var runRace = function() {
-
-  if rabbit and turtle are not at finishline, continue to next turn
-  raceIteration();
-
-  updateDisplay(messageString);
-}
-*/
