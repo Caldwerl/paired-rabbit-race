@@ -1,15 +1,43 @@
-body {
-  margin:100px;
+
+
+header {
+  margin-top: -20px;
+  height: 100px;
+  background-color:#d3d3d3;
+  padding-top: 30px;
 }
+
+header > h1 {
+  text-align: center;
+}
+
 
 footer {
   margin-top: 50px;
+  height:100px;
+  background-color:#d3d3d3;
+  padding-top: 30px;
+}
+
+footer > p {
+  text-align: center;
+}
+
+#description {
+  margin-top: 30px;
+  margin-left:100px;
 }
 
 #mainDisplay {
   margin-top: 30px;
+  margin-left:100px;
 }
 
-#submit {
+button {
   margin-top: 20px;
 }
+
+#distance {
+  margin-top: 20px;
+}
+
